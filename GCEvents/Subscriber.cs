@@ -10,7 +10,7 @@ namespace GCEvents
     {
         public Subscriber(Publisher publisher)
         {
-            // Comment this and the object won't be collected.
+            // Comment this and the object will be collected.
             publisher.SomeEvent += handler;
         }
 
