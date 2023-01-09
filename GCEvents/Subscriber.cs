@@ -1,22 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GCEvents
 {
     public class Subscriber
     {
+        private readonly Publisher publisher;
+
         public Subscriber(Publisher publisher)
         {
             // Comment this and the object will be collected.
             publisher.SomeEvent += handler;
+            this.publisher = publisher;
         }
 
         private void handler(object sender, EventArgs e)
         {
             Console.WriteLine("Event handled");
+        }
+
+        public void Dispose()
+        {
+            publisher.SomeEvent -= handler;
         }
 
         ~Subscriber()
